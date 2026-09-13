@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby Shower de Gael</title>
+<style>
+  :root{
+    --crema: #FBF3E3;
+    --crema-osc: #F3E6C9;
+    --azul: #AFCBDA;
+    --azul-osc: #7FA8BC;
+    --miel: #E3A94D;
+    --cafe: #6B4A2E;
+    --cafe-suave: #8B6849;
+  }
+
+  * { box-sizing: border-box; }
+
+  @keyframes floatCloud{
+    0%, 100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(20px,-16px) scale(1.08); }
+  }
+  @keyframes buzzBee{
+    0%, 100% { transform: translate(0,0) rotate(0deg) scale(1); }
+    25% { transform: translate(18px,-26px) rotate(22deg) scale(1.1); }
+    50% { transform: translate(-14px,-10px) rotate(-18deg) scale(1); }
+    75% { transform: translate(16px,14px) rotate(16deg) scale(1.1); }
+  }
+  @keyframes bounceBear{
+    0%, 100% { transform: translateY(0) rotate(-4deg) scale(1); }
+    50% { transform: translateY(-16px) rotate(6deg) scale(1.08); }
+  }
+  @keyframes wiggle{
+    0%, 100% { transform: rotate(-6deg) scale(1); }
+    50% { transform: rotate(26deg) scale(1.15); }
+  }
+  @keyframes fadeInUp{
+    from { opacity:0; transform: translateY(30px) scale(.94); }
+    to { opacity:1; transform: translateY(0) scale(1); }
+  }
+  @keyframes popCard{
+    0% { opacity:0; transform: scale(.85) translateY(36px) rotate(-2deg); }
+    100% { opacity:1; transform: scale(1) translateY(0) rotate(0deg); }
+  }
+  @keyframes pulseBtn{
+    0%, 100% { box-shadow: 0 0 0 0 rgba(74,190,114,0.6); transform: scale(1); }
+    50% { box-shadow: 0 0 0 14px rgba(74,190,114,0); transform: scale(1.06); }
+  }
+  @keyframes popCheck{
+    0% { transform: scale(1) rotate(0deg); }
+    35% { transform: scale(1.18) rotate(-4deg); }
+    65% { transform: scale(0.95) rotate(3deg); }
+    100% { transform: scale(1) rotate(0deg); }
+  }
+  @keyframes floatUpFade{
+    0% { opacity:1; transform: translateY(0) scale(1) rotate(0deg); }
+    100% { opacity:0; transform: translateY(-46px) scale(1.8) rotate(25deg); }
+  }
+  @keyframes drift{
+    0% { transform: translateX(-40px) translateY(0) rotate(0deg); opacity:0; }
+    8% { opacity:1; }
+    45% { transform: translateX(560px) translateY(-18px) rotate(12deg); opacity:1; }
+    50% { opacity:0; }
+    50.001% { transform: translateX(-40px) translateY(0) rotate(0deg); opacity:0; }
+    100% { transform: translateX(-40px) translateY(0) rotate(0deg); opacity:0; }
+  }
+  @keyframes babyNamePulse{
+    0%, 100% { transform: scale(1) rotate(-1deg); }
+    50% { transform: scale(1.08) rotate(1deg); }
+  }
+  @keyframes iconBob{
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-5px) rotate(-8deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{ animation: none !important; transition: none !important; }
+  }
+
+  body{
+    margin:0;
+    padding:24px 12px;
+    background: linear-gradient(160deg, var(--azul) 0%, var(--crema) 45%, var(--crema-osc) 100%);
+    background-attachment: fixed;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color: var(--cafe);
+    display:flex;
+    justify-content:center;
+  }
+
+  .invitation{
+    max-width:520px;
+    width:100%;
+    background:#fff;
+    border-radius:28px;
+    box-shadow: 0 10px 30px rgba(107,74,46,0.18);
+    overflow:hidden;
+    border: 6px solid var(--azul);
+    animation: popCard .7s cubic-bezier(.34,1.56,.64,1) both;
+  }
+
+  .header{
+    background: var(--azul);
+    padding: 28px 20px 40px;
+    text-align:center;
+    position:relative;
+    color:#fff;
+  }
+
+  .header svg { display:block; margin: 0 auto 6px; }
+  .header .bear-icon{ animation: bounceBear 2.6s ease-in-out infinite; }
+
+  .cloud{
+    position:absolute;
+    font-size:1.4rem;
+    opacity:0.85;
+    animation: floatCloud 6s ease-in-out infinite;
+  }
+  .cloud1{ top:12px; left:16px; }
+  .cloud2{ top:20px; right:20px; animation-delay: 1.4s; }
+
+  .bee{
+    position:absolute;
+    font-size:1.15rem;
+    animation: buzzBee 3s ease-in-out infinite;
+  }
+  .bee1{ top:10px; right:64px; animation-delay:.6s; }
+
+  .drift-bee{
+    position:absolute;
+    top:50px;
+    left:0;
+    font-size:1.3rem;
+    animation: drift 16s linear infinite;
+  }
+
+  .header h1{
+    font-size: 2.1rem;
+    margin: 4px 0 0;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 0 rgba(107,74,46,0.35);
+  }
+
+  .header p.subtitle{
+    margin: 6px 0 0;
+    font-size: 1rem;
+    font-style: italic;
+    opacity: 0.95;
+  }
+
+  .wave{
+    position:absolute;
+    bottom:-1px; left:0; right:0;
+    line-height:0;
+  }
+
+  .body-content{
+    padding: 26px 26px 10px;
+    text-align:center;
+  }
+
+  .baby-name{
+    font-size: 1.6rem;
+    color: var(--miel);
+    font-weight:bold;
+    margin: 0 0 4px;
+    display:inline-block;
+    animation: fadeInUp .6s ease-out both, babyNamePulse 2.2s ease-in-out infinite .9s;
+  }
+
+  .msg{
+    font-size: 1rem;
+    line-height:1.5;
+    margin: 0 0 20px;
+    animation: fadeInUp .6s ease-out both;
+    animation-delay: .15s;
+  }
+
+  .details{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin: 20px 0;
+  }
+
+  .detail-card{
+    background: var(--crema);
+    border-radius: 16px;
+    padding: 14px 18px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-align:left;
+    border: 2px dashed var(--azul-osc);
+    animation: fadeInUp .6s ease-out both;
+    transition: transform .2s ease;
+  }
+  .detail-card:hover{ transform: translateY(-3px); }
+  .detail-card:nth-child(1){ animation-delay: .2s; }
+  .detail-card:nth-child(2){ animation-delay: .35s; }
+
+  .detail-icon{
+    font-size: 1.8rem;
+    flex-shrink:0;
+    display:inline-block;
+    animation: iconBob 2.4s ease-in-out infinite;
+  }
+  .detail-card:nth-child(2) .detail-icon{ animation-delay: .5s; }
+
+  .detail-text strong{
+    display:block;
+    font-size: 0.95rem;
+    color: var(--cafe);
+  }
+  .detail-text span{
+    font-size: 0.9rem;
+    color: var(--cafe-suave);
+  }
+
+  .time-note{
+    margin: 20px 0 0;
+    font-size: 0.9rem;
+    line-height:1.5;
+    color: var(--cafe);
+    background: var(--crema);
+    border: 2px dashed var(--azul-osc);
+    border-radius: 14px;
+    padding: 14px 16px;
+  }
+
+  .rsvp-prompt{
+    margin: 22px 0 0;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--cafe-suave);
+  }
+
+  .cta-row{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin: 12px 0 6px;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    text-decoration:none;
+    padding: 13px 20px;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight:bold;
+    font-family: inherit;
+    border: none;
+    cursor:pointer;
+    transition: transform .15s ease;
+    animation: fadeInUp .6s ease-out both;
+  }
+  .btn:hover{ transform: translateY(-2px) scale(1.03); }
+  .cta-row .btn:nth-child(1){ animation-delay: .5s; }
+  .cta-row .btn:nth-child(2){ animation-delay: .62s; }
+
+  .btn-whatsapp{
+    background: #4ABE72;
+    color:#fff;
+    animation: fadeInUp .6s ease-out both, pulseBtn 2.4s ease-in-out infinite;
+    animation-delay: .5s, 1.2s;
+  }
+
+  .btn-map{
+    background: transparent;
+    color: var(--azul-osc);
+    border: 2px solid var(--azul-osc);
+  }
+
+  .btn-amazon{
+    display:flex;
+    width:100%;
+    margin: 8px 0 0;
+    background: var(--miel);
+    color: var(--cafe);
+    animation: fadeInUp .6s ease-out both, pulseBtn 2.4s ease-in-out infinite;
+    animation-delay: 0s, 1.2s;
+  }
+
+  .divider{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin: 28px 0 14px;
+    color: var(--azul-osc);
+  }
+  .divider::before, .divider::after{
+    content:"";
+    flex:1;
+    height:2px;
+    background: var(--azul);
+    opacity:0.4;
+  }
+  .divider span{ font-size: 1.1rem; display:inline-block; animation: wiggle 2.2s ease-in-out infinite; }
+
+  .gifts-section{
+    text-align:left;
+    padding: 4px 26px 26px;
+  }
+
+  .gifts-title{
+    text-align:center;
+    font-size: 1.2rem;
+    color: var(--cafe);
+    margin-bottom:4px;
+  }
+  .gifts-hint{
+    text-align:center;
+    font-size: 0.82rem;
+    color: var(--cafe-suave);
+    margin: 0 0 16px;
+  }
+
+  .gift-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .gift-item{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background: var(--crema);
+    border-radius: 12px;
+    padding: 10px 14px;
+    cursor:pointer;
+    border: 1px solid var(--crema-osc);
+    transition: background .15s ease, transform .15s ease;
+    animation: fadeInUp .5s ease-out both;
+  }
+  .gift-item:hover{ background: var(--crema-osc); transform: translateX(3px); }
+  .gift-item.pop{ animation: popCheck .35s ease; }
+
+  .burst-emoji{
+    position:absolute;
+    right:14px;
+    top:50%;
+    font-size:1.1rem;
+    pointer-events:none;
+    animation: floatUpFade .8s ease-out forwards;
+  }
+
+  .gift-item input{
+    width:19px;
+    height:19px;
+    accent-color: var(--azul-osc);
+    flex-shrink:0;
+  }
+
+  .gift-item label{
+    font-size: 0.95rem;
+    cursor:pointer;
+    flex:1;
+  }
+
+  .gift-item.checked label{
+    text-decoration: line-through;
+    color: var(--cafe-suave);
+    opacity: 0.6;
+  }
+
+  .gift-note{
+    margin-top:16px;
+    font-size: 0.8rem;
+    text-align:center;
+    color: var(--cafe-suave);
+  }
+
+  .gift-note-soft{
+    margin-top:14px;
+    font-size: 0.9rem;
+    line-height:1.5;
+    color: var(--cafe);
+    background: var(--crema);
+    border: 2px dashed var(--azul-osc);
+    border-radius: 14px;
+    padding: 14px 16px;
+  }
+
+  .footer{
+    text-align:center;
+    padding: 10px 26px 30px;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--cafe-suave);
+  }
+
+  .honeybar{
+    height: 8px;
+    background: repeating-linear-gradient(45deg, var(--miel), var(--miel) 12px, var(--cafe-suave) 12px, var(--cafe-suave) 24px);
+  }
+
+  @media print{
+    body{ background: #fff; padding:0; }
+    .invitation{ box-shadow:none; border: 2px solid var(--azul); }
+    .no-print{ display:none !important; }
+    *, *::before, *::after{ animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="invitation">
+
+  <div class="header">
+    <span class="cloud cloud1" aria-hidden="true">☁️</span>
+    <span class="cloud cloud2" aria-hidden="true">☁️</span>
+    <span class="bee bee1" aria-hidden="true">🐝</span>
+    <span class="drift-bee" aria-hidden="true">🐝</span>
+    <svg class="bear-icon" width="94" height="120" viewBox="0 0 100 150" aria-hidden="true">
+      <!-- piernas -->
+      <ellipse cx="35" cy="141" rx="14" ry="12" fill="#F5C243"/>
+      <ellipse cx="65" cy="141" rx="14" ry="12" fill="#F5C243"/>
+      <!-- cuerpo / barriga (más amplio que la cabeza) -->
+      <ellipse cx="50" cy="103" rx="38" ry="37" fill="#F5C243"/>
+      <!-- brazos colgando a los lados -->
+      <ellipse cx="15" cy="98" rx="7" ry="14" fill="#F5C243" transform="rotate(12 15 98)"/>
+      <ellipse cx="85" cy="98" rx="7" ry="14" fill="#F5C243" transform="rotate(-12 85 98)"/>
+      <!-- cuello -->
+      <ellipse cx="50" cy="60" rx="11" ry="9" fill="#F5C243"/>
+      <!-- camiseta roja (crop top, pegada al cuello) -->
+      <path d="M40 61 Q50 57 60 61 Q80 67 82 82 L80 101 Q50 111 20 101 L18 82 Q20 67 40 61 Z" fill="#D6392C"/>
+      <!-- mangas sobre los hombros -->
+      <ellipse cx="19" cy="82" rx="8" ry="9" fill="#D6392C"/>
+      <ellipse cx="81" cy="82" rx="8" ry="9" fill="#D6392C"/>
+      <!-- cuellito de la camiseta -->
+      <path d="M41 62 Q50 67 59 62" stroke="#B92C21" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <!-- orejas -->
+      <circle cx="34" cy="20" r="9" fill="#F2B705"/>
+      <circle cx="66" cy="20" r="9" fill="#F2B705"/>
+      <!-- cabeza (más pequeña que el cuerpo) -->
+      <circle cx="50" cy="37" r="23" fill="#F5C243"/>
+      <!-- cejas -->
+      <path d="M39 30 Q42.5 27.5 46 30" stroke="#6B4A2E" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+      <path d="M54 30 Q57.5 27.5 61 30" stroke="#6B4A2E" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+      <!-- ojos -->
+      <circle cx="44" cy="36" r="2.6" fill="#5A3A1B"/>
+      <circle cx="56" cy="36" r="2.6" fill="#5A3A1B"/>
+      <!-- nariz -->
+      <ellipse cx="50" cy="43" rx="4" ry="3.1" fill="#5A3A1B"/>
+      <!-- boca -->
+      <path d="M50 46 L50 50 Q45.5 53.5 42 49 M50 50 Q54.5 53.5 58 49" stroke="#5A3A1B" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+    </svg>
+    <h1>¡Es un niño!</h1>
+    <p class="subtitle">Baby Shower</p>
+    <svg class="wave" viewBox="0 0 500 40" preserveAspectRatio="none" width="100%" height="40">
+      <path d="M0,20 C125,45 375,-5 500,20 L500,40 L0,40 Z" fill="#ffffff"/>
+    </svg>
+  </div>
+
+  <div class="body-content">
+    <p class="baby-name">Gael</p>
+    <p class="msg">Como abejitas alrededor de la miel, queremos que nos acompañes a celebrar la próxima llegada de nuestro pequeño osito.</p>
+
+    <div class="details">
+      <div class="detail-card">
+        <div class="detail-icon">📅</div>
+        <div class="detail-text">
+          <strong>Domingo 15 de noviembre, 2026</strong>
+          <span>2:00 p.m.</span>
+        </div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-icon">📍</div>
+        <div class="detail-text">
+          <strong>Villa Tortuga</strong>
+          <span>Santo Domingo Norte</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="time-note">🐝 Te esperamos puntual a las 2:00 p.m. para disfrutar juntos de todas las actividades que preparamos con cariño. Y al terminar, ¡quédate a darte un rico chapuzón en la piscina! 🏊💦</p>
+
+    <p class="rsvp-prompt no-print">Confirma tu asistencia con quien te invitó 🐝</p>
+
+    <div class="cta-row no-print">
+      <a class="btn btn-whatsapp"
+         href="https://wa.me/18296725805?text=%C2%A1Hola!%20Confirmo%20mi%20asistencia%20al%20Baby%20Shower%20de%20Gael%20%F0%9F%A7%B8"
+         target="_blank" rel="noopener">
+        💬 Confirmar con el papá de Gael
+      </a>
+      <a class="btn btn-whatsapp"
+         href="https://wa.me/18295680600?text=%C2%A1Hola!%20Confirmo%20mi%20asistencia%20al%20Baby%20Shower%20de%20Gael%20%F0%9F%A7%B8"
+         target="_blank" rel="noopener">
+        💬 Confirmar con la mamá de Gael
+      </a>
+      <a class="btn btn-map"
+         href="https://maps.google.com/?q=18.604452,-69.875221"
+         target="_blank" rel="noopener">
+        🗺️ Cómo llegar
+      </a>
+    </div>
+  </div>
+
+  <div class="honeybar"></div>
+
+  <div class="gifts-section">
+    <div class="divider"><span>🍯</span></div>
+    <p class="gifts-title">Lista de regalos</p>
+    <p class="gifts-hint">Preparamos nuestra lista de regalos 🐝</p>
+
+    <p class="gift-note gift-note-soft">Tu compañía es el mejor regalo que podríamos pedir. 💛 La lista es solo una guía por si quieres traer un detalle.</p>
+
+    <a class="btn btn-amazon"
+       href="https://www.amazon.com/baby-reg/paola-quevedo-febrero-2027-miami/CYY1CF114S3P"
+       target="_blank" rel="noopener">
+      🎁 Ver lista de regalos en Amazon
+    </a>
+
+       <p class="gift-note gift-note-soft">Y si no te decides por algo de la lista, no te preocupes: unos pampers o wipers siempre serán bienvenidos y de mucha ayuda. Lo más importante es tenerte con nosotros. 💛🐝</p>
+  </div>
+
+  <div class="footer">
+    Con todo nuestro cariño,<br>los papás de Gael 🧸
+  </div>
+
+</div>
+
+</body>
+</html>
